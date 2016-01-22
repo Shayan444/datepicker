@@ -1,0 +1,43 @@
+/*Row Delete Code*/
+
+$del = $_GET['delete'];
+
+if($del)
+{
+$sql = "delete from form_table where id = $del";
+mysqli_query($link,$sql);
+}
+
+/*End*/
+
+//Edit or update data
+
+$edit = $_GET['edit'];
+	
+	$sql = "Select * from form_table where id = $edit";
+	$result = mysqli_query($link,$sql);
+	$row = mysqli_fetch_array($result);
+	
+<body>
+
+<form>
+
+  <input type="text" class="form-control" id="id" name="id" placeholder="" value="<?php echo $row['ID']; ?>" readonly>
+  
+  <input type="text" class="form-control" name="fname" placeholder="Your First Name" value="<?php echo $row['First_name'];?>"required>
+
+</form>
+
+</body>	
+	
+	
+	//End
+
+
+
+/*Action Column*/
+
+				echo "<td><a href='form.php?edit=".$row['ID']."' class='glyphicon glyphicon-pencil' title='Edit'></a>     			
+				<a  href='select.php?delete=".$row['ID']."' class='glyphicon glyphicon-remove' title='Delete'></a></td>";
+				
+/*End*/
