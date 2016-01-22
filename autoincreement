@@ -1,0 +1,31 @@
+/*Connection*/
+
+$link = mysqli_connect("localhost", "root", "","data");
+ 
+	if(!$link)
+	{
+    	die("ERROR: Could not connect. " . mysqli_connect_error());
+	}
+	
+/*End*/
+
+
+
+
+/*Auto Increement ID*/
+
+$sql = "Select ifnull(MAX(id),0)+1 AS lastid from form_table";	
+$result = mysqli_query($link,$sql);
+$row = mysqli_fetch_array($result);
+
+		/*End*/
+		
+<body>
+
+<form>
+
+  <input type="text" class="form-control" id="id" name="id" placeholder="" value="<?php echo $row['lastid']; ?>" readonly>
+
+</form>
+
+</body>
